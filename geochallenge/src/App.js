@@ -4,13 +4,17 @@ import React, { useEffect, useState } from "react";
 import { Input } from 'antd';
 import { MdNavigateNext, MdNavigateBefore, AiFillHome } from 'react-icons/all'
 import { useDispatch, useSelector } from 'react-redux'
-import {listRepos} from './redux/Actions/Reposactions'
+import {listReposaction} from './redux/Actions/Reposactions'
+import Cardrepo from './Components/cardrepo/Cardrepo';
+import { Skeleton } from 'antd';
+import { Result, Button } from 'antd';
+
 
 
 function App() {
   const [todayDate, setTodayDate] = useState("")
   const [page, setPage] = useState(1)
-  const [Searchinput, setSearchinput] = useState("")
+  const [keyword, setkeyword] = useState("")
   const { Search } = Input;
   const dispatch = useDispatch()
   const listRepos = useSelector((state) => state.listRepos)
@@ -27,28 +31,60 @@ function App() {
     }
   useEffect(() => {
     setDate()
-    dispatch(listRepos(todayDate, 1))
-    console.log(repos)
+    if (todayDate) {
+          dispatch(listReposaction(todayDate, page,keyword))
+    }
     return () => {
     }
-  }, [todayDate])
 
+  }, [dispatch,todayDate,page,keyword])
+
+    function handleBack() {
+          setPage(page => page - 1 <= 0 ? page : page - 1);
+    }
+    function handleNext() {
+          setPage(page => page + 1);
+    }
   return (
+    <>
       <nav>
             <h3>Trending Repos</h3>
             <Search     placeholder="input search text"
                         allowClear
                         enterButton
-                        size="large" />
+                        size="large" 
+                        onChange = {(e)=> setkeyword(e.target.value)}/>
             <div className='right_buttons' >
-              <AiFillHome size='30' className='home_btn' />
+              <AiFillHome size='30' className='home_btn' onClick = {() => setPage(1)}/>
               <div className = 'navigateBtns'>
-                      <MdNavigateBefore className ='prev_btn' size = '35' />
-                      <MdNavigateNext className = 'next_btn' size = '35'/>
+                      <MdNavigateBefore  className ='prev_btn' onClick ={handleBack} size = '35' />
+                      <MdNavigateNext  className = 'next_btn' onClick = {handleNext} size = '35'/>
               </div>
-  
             </div>
       </nav>
+      <>
+      
+        {loading ? <Skeleton active /> : error ? 
+          <Result status="warning" title="There are some problems with your operation." />
+          :
+
+          <div className='cards'>
+            {repos.items.map((repo,index) => (
+                         <Cardrepo key = {index} repo = {repo} />
+            ))}
+ 
+
+          </div>
+        }
+        <div className = 'pagenumber'>
+          Page N : {page}
+        </div>
+
+
+      </>
+      
+
+    </>
   );
 }
 
