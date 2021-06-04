@@ -69,6 +69,13 @@ h3 {
   font-size: 18px;
   font-weight: 500;
 }
+
+.searchkeyword {
+  margin-left: 40px;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
 @media screen and (max-width: 1088px) {
   .cards {
     display: grid;
