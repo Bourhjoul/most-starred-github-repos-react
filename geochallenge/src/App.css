@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+}
+nav {
+  background-color: #fff;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.6);
+  height: 60px;
+  display: grid;
+  grid-template-columns: 20% 45% 35%;
+  text-align: center;
+  align-items: center;
+}
+.ant-input-search-button {
+  background-color: #456990;
+  border: none;
+}
+
+.ant-input-search-button:hover {
+  background-color: #27486b;
+}
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: #456990;
+}
+h3 {
+  color: #456990;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.right_buttons svg polyline {
+  background-color: #456990;
+  color: rgb(56, 5, 5);
+  fill: #27486b;
+}
+.home_btn {
+  /* margin: 0 20px; */
+  color: #456990;
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+}
+.prev_btn,
+.next_btn {
+  color: #456990;
+  cursor: pointer;
+}
+.prev_btn:hover,
+.next_btn:hover,
+.home_btn:hover {
+  color: #27486b;
+}
+.right_buttons {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  /* justify-self: center; */
+}
+.navigateBtns {
+  align-self: center;
+  justify-self: center;
+  margin-top: 4px;
+}
