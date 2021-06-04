@@ -36,7 +36,6 @@ h4 {
   align-self: center;
 }
 .container_star_issue {
-  /* width: 150px; */
   display: grid;
   grid-template-columns: 50% 50%;
 }
