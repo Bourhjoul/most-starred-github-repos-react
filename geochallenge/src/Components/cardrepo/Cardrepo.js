@@ -16,15 +16,18 @@ const Cardrepo = ({ repo }) => {
     }
     useEffect(() => {
         setDate()
-        const date1 = new Date(createdon)
-        const date2 = new Date(todayDate)
-        const differnce_time = date2 - date1
-         setSubmittedOn(differnce_time / (1000 * 3600 * 24))
+        if (todayDate) {
+            const date1 = new Date(createdon)
+            const date2 = new Date(todayDate)
+            const differnce_time = date2 - date1
+            setSubmittedOn(differnce_time / (1000 * 3600 * 24))            
+        }
+
 
         return () => {
             
         }
-    }, [])
+    }, [todayDate])
     return (
         <div className = 'card_container'>
             <img src={repo.owner.avatar_url} className='avatar_pic' alt='avatarpic' />
